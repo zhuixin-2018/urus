@@ -1,0 +1,37 @@
+metadata:
+    name: openssh
+    format: "Lava-Test-Shell Test Definition 1.0"
+    description: "Use openssl speed command to test the performance of
+                  cryptographic algorithms"
+    maintainer:
+        - 1136920311@qq.com
+    os:
+        - opensuse
+        - ubuntu
+        - centos
+        - fedora
+        - debian
+    scope:
+        - openssh
+    devices:
+        - d03
+        - d05
+    level: 1
+    totalcase:
+        opensuse: 5
+        ubuntu: 5
+        centos: 5
+        fedora: 5
+        debian: 5
+
+
+run:
+    steps:
+        - "cd auto-test/distributions/distribution/openssh; ./openssh.sh; cd -"
+
+parse:
+   pattern: "^(?!.+ED)(?P<test_case_id>\\w+)\\s+(?P<result>\\w+)\\s+\\d$"
+   fixupdict:
+   FAIL: fail
+   PASS: pass
+

@@ -1,0 +1,33 @@
+
+metadata:
+    name: ltp-realtime
+    format: "Lava-Test-Shell Test Definition 1.0"
+    description: "this testsuite contains some functional tests and a few performance and latency measurement tests "
+    maintainer:
+        - hongxin_228@163.com
+    scope:
+        - performance
+    os:
+        - centos
+        - ubuntu
+        - debian
+        - fedora
+        - opensuse
+    devices:
+        - d05
+        - d03
+    level: 1
+    totalcase:
+        centos: 18
+        ubuntu: 18
+        debian: 18
+        fedora: 18
+        opensuse: 18
+run:
+    steps:
+        - "cd auto-test/apps/performance/ltp-realtime; ./ltp-realtime.sh; cd - "
+parse:
+   pattern: "^(?!.+ED)(?P<test_case_id>\\w+)\\s+(?P<result>\\w+)\\s+\\d$"
+   fixupdict:
+   FAIL: fail
+   PASS: pass

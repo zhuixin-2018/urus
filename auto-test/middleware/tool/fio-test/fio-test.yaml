@@ -1,0 +1,35 @@
+metadata:
+    name: fio-test
+    format: "Lava-Test-Shell Test Definition 1.0"
+    description: "FIO or Flexible IO is a versatile IO workload generator test
+                  on Linux."
+    maintainer:
+        - 1136920311@qq.com
+    scope:
+        - fio-test
+    os:
+        - centos
+        - ubuntu
+        - fedora
+        - debian
+        - opensuse
+    devices:
+        - d05
+        - d03
+    level: 1 
+    totalcase:
+        centos: 14
+        ubuntu: 14
+        fedora: 14
+        debian: 14
+        opensuse: 14
+
+run:
+    steps:
+        - "cd auto-test/middleware/tool/fio-test; ./fio-test.sh; cd -"
+
+parse:
+    pattern: "^(?!.+ED)(?P<test_case_id>\\w+)\\s+(?P<result>\\w+)\\s+\\d$"
+    fixupdict:
+    FAIL: fail
+    PASS: pass

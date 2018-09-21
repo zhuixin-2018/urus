@@ -1,0 +1,35 @@
+﻿
+metadata:
+    name: kernel-package1 
+    format: "Lava-Test-Shell Test Definition 1.0"
+    description: "不同发行版内核包的安装和卸载"
+    maintainer:
+        - shuangshengchen@qq.com
+        - fyuanz_2010@163.com
+    scope:
+        - linux
+    os:
+        - centos
+        - ubuntu 
+        - debian
+        - fedora
+        - opensuse
+    devices:
+        - d05
+    level: 1 
+    totalcase:
+        centos: 38
+        ubuntu: 43
+        debian: 55
+        fedora: 32
+        opensuse: 8        
+run:
+    steps:
+        - "cd auto-test/kernel/linux/kernel-package1; ./kernel-package1.sh; cd -"
+
+parse:
+    pattern: "^(?!.+ED)(?P<test_case_id>\\w+)\\s+(?P<result>\\w+)\\s+\\d$"
+    fixupdict:
+        FAIL: fail
+        PASS: pass
+

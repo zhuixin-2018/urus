@@ -1,0 +1,33 @@
+metadata:
+    name: ethtool
+    format: "Lava-Test-Shell Test Definition 1.0"
+    description: "Install ethtool,Run ethtool tests and uninstall ethtool"
+    maintainer:
+        - fyuanz_2010@163.com
+    scope:
+        - tool
+    os:
+        - centos
+        - ubuntu
+        - fedora
+        - debian
+        - opensuse
+    devices:
+        - d03
+        - d05
+    level: 1
+    totalcase:
+        centos: 13
+        ubuntu: 13
+        fedora: 13
+        debian: 13
+        opensuse: 13 
+
+run:
+    steps:
+        - "cd auto-test/middleware/tool/ethtool; ./ethtool.sh; cd -"
+parse:
+    pattern: "^(?!.+ED)(?P<test_case_id>\\w+)\\s+(?P<result>\\w+)\\s+\\d$"
+    fixupdict:
+    FAIL: fail
+    PASS: pass

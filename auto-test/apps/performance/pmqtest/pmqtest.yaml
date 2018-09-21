@@ -1,0 +1,40 @@
+metadata:
+    name: pmqtest
+    format: "Lava-Test-Shell Test Definition 1.0"
+    description: "Pmqtest measures the latency of interprocess communication
+                  with POSIX messages queues. The test starts pairs of threads
+                  that are synchronized via mq_send/mw_receive() and measures
+                  the latency between sending and receiving the message."
+    maintainer:
+        - shuangshengchen@qq.com
+    os:
+        - centos
+        - ubuntu
+        - fedora
+        - debian
+        - opensuse
+    scope:
+        - performance
+    devices:
+        - d03
+        - d05
+    level: 1
+    totalcase:
+        centos: 2
+        ubuntu: 2
+        fedora: 2
+        debian: 2
+        opensuse: 2
+
+params:
+    LOOPS: 10000
+
+run:
+    steps:
+        - cd auto-test/apps/performance/pmqtest/
+        - ./pmqtest.sh -l "${LOOPS}"
+parse:
+    pattern: "^(?!.+ED)(?P<test_case_id>\\w+)\\s+(?P<result>\\w+)\\s+\\d$"
+    fixupdict:
+        FAIL: fail
+        PASS: pass

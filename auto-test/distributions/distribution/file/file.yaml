@@ -1,0 +1,34 @@
+
+metadata:
+    name: "file"
+    format: "Lava-Test-Shell Test Definition 1.0"
+    description: "Basic operations on files"
+    maintainer:
+        - hongxin_228@163.com
+    scope:
+        -distribution
+    os:
+        - centos
+        - ubuntu
+        - debian
+        - fedora
+        - opensuse
+    devices:
+        - d05
+        - d03
+    level: 1
+    totalcase:
+        centos: 9
+        ubuntu: 9
+        opensuse: 9
+        debian: 9
+        fedora: 9
+run:
+    steps:
+        - "cd auto-test/distributions/distribution/file; ./file.sh; cd -"
+parse:
+   pattern: "^(?!.+ED)(?P<test_case_id>\\w+)\\s+(?P<result>\\w+)\\s+\\d$"
+   fixupdict:
+   FAIL: fail
+   PASS: pass
+

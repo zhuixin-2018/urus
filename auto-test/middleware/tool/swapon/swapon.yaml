@@ -1,0 +1,35 @@
+
+metadata:
+    name: swapon
+    format: "Lava-Test-Shell Test Definition 1.0"
+    description: "swapon"
+    maintainer:
+        - fyuanz_2010@163.com
+    scope:
+        - tool
+    os:
+        - centos
+        - debian
+        - ubuntu
+        - fedora
+        - opensuse
+    devices:
+        - d03
+        - d05
+    level: 1
+    totalcase:
+        centos: 8
+        debian: 8 
+        ubuntu: 8
+        fedora: 8
+        opensuse: 8
+run:
+    steps:
+        - "cd auto-test/middleware/tool/swapon; ./swapon.sh; cd -"
+
+parse:
+   pattern: "^(?!.+ED)(?P<test_case_id>\\w+)\\s+(?P<result>\\w+)\\s+\\d$"
+   fixupdict:
+   FAIL: fail
+   PASS: pass
+

@@ -1,0 +1,35 @@
+
+metadata:
+    name: nodejs-base-test
+    format: "Lava-Test-Shell Test Definition 1.0"
+    description: "nodejs testing"
+    maintainer:
+        - tanliqing2010@163.com
+    scope:
+        - language
+    os:
+        - centos
+        - ubuntu
+        - opensuse
+        - fedora
+    devices:
+        - d03
+        - d05
+    level: 1
+    totalcase:
+        centos: 9
+        ubuntu: 9
+        opensuse: 9
+        fedora: 9
+
+
+run:
+    steps:
+        - "cd auto-test/middleware/language/nodejs; ./nodejs-test.sh; cd -"
+
+parse:
+   pattern: "^(?!.+ED)(?P<test_case_id>\\w+)\\s+(?P<result>\\w+)\\s+\\d$"
+   fixupdict:
+   FAIL: fail
+   PASS: pass
+

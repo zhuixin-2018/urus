@@ -1,0 +1,33 @@
+
+metadata:
+    name: dstat
+    format: "Lava-Test-Shell Test Definition 1.0"
+    description: "dstat command is system resource statistics tools"
+    maintainer:
+        - hongxin_228@163.com
+    scope:
+        - performance
+    os:
+        - ubuntu
+        - centos
+        - debian
+        - opensuse
+        - fedora
+    devices:
+        - d05
+        - d03
+    level: 1
+    totalcase:
+        centos: 13
+        ubuntu: 13
+        debian: 13
+        fedora: 13
+        opensuse: 13
+run:
+    steps:
+        - "cd auto-test/apps/performance/dstat; ./dstat.sh; cd - "
+parse:
+   pattern: "^(?!.+ED)(?P<test_case_id>\\w+)\\s+(?P<result>\\w+)\\s+\\d$"
+   fixupdict:
+   FAIL: fail
+   PASS: pass

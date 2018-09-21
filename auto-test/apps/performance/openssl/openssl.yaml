@@ -1,0 +1,35 @@
+metadata:
+    name: openssl
+    format: "Lava-Test Test Definition 1.0"
+    description: "Use openssl speed command to test the performance of
+                  cryptographic algorithms"
+    maintainer:
+        - hongxin_228@163.com
+    os:
+        - centos
+        - ubuntu
+        - debian
+        - fedora
+        - opensuse
+    scope:
+        - performance
+    devices:
+        - d03
+        - d05
+    level: 1
+    totalcase:
+        centos: 14
+        ubuntu: 14
+        debian: 14
+        fedora: 14
+        opensuse: 14
+
+run:
+    steps:
+        - "cd auto-test/apps/performance/openssl; ./openssl.sh; cd -"
+parse:
+   pattern: "^(?!.+ED)(?P<test_case_id>\\w+)\\s+(?P<result>\\w+)\\s+\\d$"
+   fixupdict:
+   FAIL: fail
+   PASS: pass
+
